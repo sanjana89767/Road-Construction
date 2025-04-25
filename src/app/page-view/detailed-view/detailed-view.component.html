@@ -1,0 +1,49 @@
+<mat-card class="detailed-view-card">
+  <div class="detailed-view-container">
+    <mat-nav-list class="sampling-list">
+      <mat-list-item
+        *ngFor="let item of samplingItems"
+        (click)="selectItem(item)"
+        [ngClass]="{ 'active-item': item === selectedItem, 'hover-highlight': item === selectedItem }"
+        class="list-item"
+      >
+        {{ item.samplingTime | date:'dd:MM:yy hh:mm:ss a' }}
+      </mat-list-item>
+    </mat-nav-list>
+
+    <form [formGroup]="form" class="construction-form">
+      <div class="form-row">
+        <div class="form-label">Project Name:</div>
+        <mat-form-field appearance="outline" class="form-field">
+          <input matInput formControlName="projectname" />
+        </mat-form-field>
+      </div>
+    
+      <div class="form-row">
+        <div class="form-label">Construction Count:</div>
+        <mat-form-field appearance="outline" class="form-field">
+          <input matInput type="number" formControlName="constructioncount" />
+        </mat-form-field>
+      </div>
+    
+      <div class="form-row">
+        <div class="form-label">Is Construction Completed:</div>
+        <mat-checkbox formControlName="isconstructioncompleted">Completed</mat-checkbox>
+      </div>      
+    
+      <div class="form-row">
+        <div class="form-label">Length of the road:</div>
+        <mat-form-field appearance="outline" class="form-field">
+          <input matInput type="number" formControlName="roadlength" />
+          <span matSuffix class="km-suffix">KM</span>
+        </mat-form-field>
+      </div>
+      
+      
+      <div class="form-actions">
+        <button mat-raised-button color="primary" class="btn btn-dark btn-md" (click)="Save()">Save</button>
+      </div>
+      
+    </form>
+  </div>
+</mat-card>

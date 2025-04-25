@@ -1,0 +1,23 @@
+
+<table class="table-container">
+  <thead>
+    <tr>
+      <th>Sampling Time</th>
+      <th *ngFor="let header of headers.slice(1)">{{ header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of summarydata" (click)="selectSamplingTime(item)" [ngClass]="{ 'selected-row': item === selectedRow }">
+      <td>{{ item.samplingTime | date:'dd:MM:yy hh:mm:ss a' }}</td>
+      <td *ngFor="let header of headers.slice(1)">
+        <ng-container *ngFor="let property of item.properties">
+          <span *ngIf="property.label === header">{{ property.value }}</span>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
